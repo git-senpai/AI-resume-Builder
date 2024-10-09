@@ -7,13 +7,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="bg-red-600">
-        <img
-          src={"home_bg.jpg"}
-          className="absolute z-[-10] w-full pt-10 "
-          width={1200}
-          height={300}
-        />
+      <div className=" bg-gradient-to-r from-purple-800 via-violet-900 to-purple-600 animate-gradient-x">
         {/* <Header/> */}
         <section className=" z-50">
           <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
