@@ -6,40 +6,45 @@ import { UserButton, useUser } from "@clerk/clerk-react";
 function Header() {
   const { user, isSignedIn } = useUser();
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-purple-500 p-4 shadow-md flex justify-between items-center">
-      <Link to={"/"}>
-        <img
-          src="/logo-1.jpg"
-          className="cursor-pointer"
-          width={50}
-          height={50}
-          alt="Logo"
-        />
-      </Link>
-      <div className="flex items-center">
-        {isSignedIn ? (
-          <>
-            <Link to={"/dashboard"}>
-              <Button
-                variant="outline"
-                className="mr-4 text-gray-700 border-gray-300 hover:bg-gray-200 transition-colors duration-300"
-              >
-                Dashboard
+    <header className="bg-gray-900 bg-opacity-95 p-4 shadow-lg border-b border-gray-800">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link to={"/"} className="flex items-center space-x-3">
+          <img
+            src="/logo-1.jpg"
+            className="w-10 h-10 rounded-full border-2 border-green-400 shadow-sm transition-transform hover:scale-105 duration-300"
+            alt="Logo"
+          />
+          <span className="text-xl font-semibold text-white hidden sm:inline">AI Resume Builder</span>
+        </Link>
+        <nav className="flex items-center space-x-4">
+          {isSignedIn ? (
+            <>
+              <Link to={"/dashboard"}>
+                <Button
+                  variant="outline"
+                  className="bg-gray-800 text-green-400 hover:bg-white hover:text-gray-900 border border-green-400 transition-all duration-300"
+                >
+                  Dashboard
+                </Button>
+              </Link>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-9 h-9 border-2 border-green-400 rounded-full overflow-hidden shadow-sm hover:shadow-md transition-all duration-300",
+                  },
+                }}
+              />
+            </>
+          ) : (
+            <Link to={"/auth/sign-in"}>
+              <Button className="bg-green-600 text-white hover:bg-green-700 transition-all duration-300">
+                Get Started
               </Button>
             </Link>
-            <UserButton className="bg-gray-100 text-gray-700 rounded-full shadow-sm p-2 hover:shadow-md transition-shadow duration-300" />
-          </>
-        ) : (
-          <Link to={"/auth/sign-in"}>
-            <Button className="bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300">
-              Get Started
-            </Button>
-          </Link>
-        )}
+          )}
+        </nav>
       </div>
-    </div>
-
-    
+    </header>
   );
 }
 

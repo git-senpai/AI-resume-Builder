@@ -1,5 +1,5 @@
 import { Loader2Icon, MoreVertical } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
@@ -46,6 +46,14 @@ function ResumeCardItem({ resume, refreshData }) {
     );
   };
 
+  const handleDownload = useCallback(() => {
+    // Navigate to the view page and trigger print
+    navigation(`/my-resume/${resume.documentId}/view`);
+    setTimeout(() => {
+      window.print();
+    }, 1000); // Add a delay to ensure the page loads before printing
+  }, [navigation, resume.documentId]);
+
   return (
     <div className="transform transition-transform hover:scale-105 hover:shadow-lg cursor-pointer">
       <Link to={`/dashboard/resume/${resume.documentId}/edit`}>
@@ -89,9 +97,7 @@ function ResumeCardItem({ resume, refreshData }) {
             </DropdownMenuItem>
             <DropdownMenuItem
               className="hover:bg-gray-100 px-4 py-2"
-              onClick={() =>
-                navigation(`/my-resume/${resume.documentId}/download`)
-              }
+              onClick={handleDownload}
             >
               Download
             </DropdownMenuItem>

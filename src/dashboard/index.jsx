@@ -22,40 +22,30 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-200 p-10 md:px-20 lg:px-32" style={{
-          backgroundImage: "url('dashboard_bg.jpg')", // Update with your image path
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}>
-      <div
-        className="max-w-4xl mx-auto  rounded-lg shadow-lg p-8 relative overflow-hidden"
-      >
-        <div className="bg-white bg-opacity-50 rounded-lg p-6">
-          {" "}
-          {/* Added an overlay for readability */}
-          <h2 className="font-bold text-4xl text-center text-blue-700">
-            My Resume
-          </h2>
-          <p className="text-center text-black mt-2 mb-6 font-bold">
-            Start Creating your AI resume for your next job role
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-6">
-            <AddResume />
-            {resumeList.length > 0
-              ? resumeList.map((resume, index) => (
-                  <ResumeCardItem
-                    resume={resume}
-                    key={index}
-                    refreshData={GetResumesList}
-                  />
-                ))
-              : [1, 2, 3, 4].map((item, index) => (
-                  <div
-                    key={index}
-                    className="h-[280px] rounded-lg bg-slate-200 shadow animate-pulse"
-                  ></div>
-                ))}
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900 p-6 md:p-10 lg:p-16">
+      <div className="max-w-6xl mx-auto bg-gray-700 rounded-xl shadow-2xl p-8 transition-all duration-300 hover:shadow-3xl">
+        <h2 className="font-bold text-5xl text-center text-gray-100 mb-4">
+          My Resumes
+        </h2>
+        <p className="text-center text-gray-300 text-lg mb-8">
+          Create and manage your AI-powered resumes for your next career move
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <AddResume />
+          {resumeList.length > 0
+            ? resumeList.map((resume, index) => (
+                <ResumeCardItem
+                  resume={resume}
+                  key={index}
+                  refreshData={GetResumesList}
+                />
+              ))
+            : [1, 2, 3].map((item, index) => (
+                <div
+                  key={index}
+                  className="h-64 rounded-lg bg-gray-200 shadow animate-pulse"
+                ></div>
+              ))}
         </div>
       </div>
     </div>

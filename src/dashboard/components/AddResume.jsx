@@ -1,4 +1,4 @@
-import { Loader2, PlusSquare } from "lucide-react";
+import { Loader2, PlusSquare, X } from "lucide-react";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -50,6 +50,11 @@ function AddResume() {
     );
   };
 
+  const closeDialog = () => {
+    setOpenDialog(false);
+    setResumeTitle("");
+  };
+
   return (
     <div>
       <div
@@ -59,8 +64,8 @@ function AddResume() {
         <PlusSquare className="h-8 w-8 text-blue-500" />
       </div>
 
-      <Dialog open={openDialog}>
-        <DialogContent className="bg-white rounded-lg shadow-lg p-6">
+      <Dialog open={openDialog} onOpenChange={closeDialog}>
+        <DialogContent className="bg-gray-100 rounded-lg shadow-lg p-6">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold text-blue-700">
               Create New Resume
@@ -68,6 +73,13 @@ function AddResume() {
             <DialogDescription className="text-gray-600">
               <p>Add a title for your new resume</p>
             </DialogDescription>
+            <button
+              onClick={closeDialog}
+              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </button>
           </DialogHeader>
           <Input
             className="my-4 border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"

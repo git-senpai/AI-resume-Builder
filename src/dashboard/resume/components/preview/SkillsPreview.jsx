@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function SkillsPreview({ resumeInfo }) {
   return (
     <div className="my-6">
@@ -9,7 +10,7 @@ function SkillsPreview({ resumeInfo }) {
           color: resumeInfo?.themeColor,
         }}
       >
-        Education
+        Skills
       </h2>
       <hr
         style={{
@@ -19,14 +20,22 @@ function SkillsPreview({ resumeInfo }) {
 
       <div className="grid grid-cols-2 gap-3 my-4">
         {resumeInfo?.skills.map((skill, index) => (
-          <div key={index} className="flex items-center justify-between">
-            <h2 className="text-xs">{skill.name}</h2>
-            <div className="h-2 bg-gray-200 w-[120px]">
+          <div key={index} className="skill-item flex items-center justify-between">
+            <h2 className="text-xs skill-name">{skill.name}</h2>
+            <div className="skill-level" style={{
+              width: '120px',
+              height: '8px',
+              backgroundColor: '#e0e0e0',
+              position: 'relative',
+            }}>
               <div
-                className="h-2"
                 style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 0,
+                  height: '100%',
+                  width: `${skill.rating * 20}%`,
                   backgroundColor: resumeInfo?.themeColor,
-                  width: skill?.rating * 20 + "%",
                 }}
               ></div>
             </div>
